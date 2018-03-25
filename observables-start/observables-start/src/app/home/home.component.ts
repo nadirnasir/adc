@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
-import { Subscriber, Observer } from 'rxjs/Rx';
+import { Observer, Subscription } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import { Subscriber, Observer } from 'rxjs/Rx';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  mySubscriber: Subscriber<any>;
+  mySubscription: Subscription;
 
   constructor() { }
 
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.mySubscriber = myObservable.subscribe(
+    this.mySubscription = myObservable.subscribe(
       (data: String) => {
         console.log(data);
       },
@@ -60,6 +60,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.mySubscriber.unsubscribe();
+    this.mySubscription.unsubscribe();
   }
 }
