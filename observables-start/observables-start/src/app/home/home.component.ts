@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx' ;
+import 'rxjs/Rx';
 import { Subscriber, Observer } from 'rxjs/Rx';
 
 @Component({
@@ -26,19 +26,22 @@ export class HomeComponent implements OnInit, OnDestroy {
       (observer: Observer<string>) => {
         setTimeout(() => {
           observer.next('First Packet of data');
-        }, 2000);
+        }, 1000);
         setTimeout(() => {
           observer.next('Second Packet of data');
+        }, 2000);
+        setTimeout(() => {
+          observer.next('Third Packet of data');
+        }, 3000);
+        setTimeout(() => {
+          observer.error('This failed');
         }, 4000);
+        setTimeout(() => {
+          observer.complete();
+        }, 5000);
         setTimeout(() => {
           observer.next('Third Packet of data');
         }, 6000);
-        setTimeout(() => {
-          observer.error('This failed');
-        }, 8000);
-        setTimeout(() => {
-          observer.complete();
-        }, 10000);
       }
     );
 
